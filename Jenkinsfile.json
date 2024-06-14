@@ -1,0 +1,23 @@
+{
+  "DockerRepository": "ghcr.io",
+  "DockerRepositoryCredential": "github_docker",
+  "DockerImageName": "grupo-asd/github-elk",
+  "Environments": [
+    {
+      "name": "PRODUCCION",
+      "branchAutoDeploy": "",
+      "deployServer": {
+        "host": "10.0.4.30",
+        "credential": "SERVER_ELK_DEVOPS",
+        "sshPort": 51004
+      },
+      "deployMode": {
+        "type": "container",
+        "name": "fastapi-backend-github-metrics",
+        "enviroments": ["PYTHONUNBUFFERED=1","PYTHONDONTWRITEBYTECODE=1","TZ=America/Bogota", "TASK_INTERVAL_MINUTES=480","ORG","GITHUB_API_URL","TOKEN","ELASTIC_SEARCH_URL","ELASTICSEARCH_USERNAME","ELASTIC_PASSWORD"],
+        "port":"8000:8000",
+        "network":"metricas-github-elk_elk"
+      }
+    }
+  ]
+}
